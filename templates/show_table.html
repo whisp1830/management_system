@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/static/css/show_table.css">
+</head>
+<body>
+	<a href="/query_all">返回</a>
+	{% if content=="drug" %}
+	<a href="/add_drug">录入药品</a>
+	<table>
+		<caption>在售药品列表</caption>
+		<thead>
+			<tr>
+				<th>国药准字
+				<th>药品名
+				<th>规格
+				<th>生产厂家
+				<th>保质期（年）
+				<th>库存
+				<th>
+				<th>
+		</thead>
+		<tbody>
+		{% for i in result%}
+			<tr>
+				<td>{{i[0]}}
+				<td>{{i[1]}}
+				<td>{{i[2]}}
+				<td><a href="/query_supplier/{{i[3]}}" title="{{i[4]}}">{{i[4]}}</a>
+				<td>{{i[5]}}
+				<td>{{i[6]}}
+				<td><a href="/update_drug?drug_id={{i[0]}}&drug_name={{i[1]}}&drug_size={{i[2]}}&shelf_life={{i[5]}}" title="{{i[4]}}">修改</a>
+				{% if not i[6] %}
+				<td><a href="/remove_drug?drug_id={{i[0]}}" style="color: black" onclick="{if(confirm('确认删除?')){this.document.formname.submit();return true;}return false;}">删除</a>
+				{% else %}
+				<td>尚有库存不可删除
+				{% endif %}
+		{% endfor %}
+		</tbody>
+	</table>
+	
+
+
+
+	{% elif content=="custom" %}
+	<a href="/add_custom">录入顾客信息</a>
+	<table>
+		<caption>顾客信息</caption>
+		<thead>
+			<tr>
+				<th>顾客编号
+				<th>顾客姓名
+				<th>顾客性别
+				<th>顾客年龄
+				<th>顾客电话
+				<th>
+		</thead>
+		<tbody>
+		{% for i in result%}
+			<tr>
+				<td>{{i[0]}}
+				<td>{{i[1]}}
+				<td>{{i[2]}}
+				<td>{{i[4]}}
+				<td>{{i[3]}}
+				<td><a href="/update_drug?drug_id={{i[0]}}&drug_name={{i[1]}}&drug_size={{i[2]}}&shelf_life={{i[5]}}" title="{{i[4]}}">修改</a>
+				{% if not i[6] %}
+				<td><a href="/remove_drug?drug_id={{i[0]}}" style="color: black" onclick="{if(confirm('确认删除?')){this.document.formname.submit();return true;}return false;}">删除</a>
+				{% else %}
+				<td>尚有库存不可删除
+				{% endif %}
+		{% endfor %}
+
+		</tbody>
+	</table>
+
+
+
+
+	{% elif content=="supplier" %}
+		{% if result %}
+			{% for i in result %}
+	<table>
+		<caption>{{i[2]}}</caption>
+		<thead>
+			<tr>
+				<th>
+				<th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>生产许可号
+				<td>{{i[0]}}
+			<tr>
+				<td>生产商名称
+				<td>{{i[2]}}
+			<tr>
+				<td>地址
+				<td>{{i[1]}}
+			<tr>
+				<td>负责人姓名
+				<td>{{i[3]}}
+			<tr>
+				<td>联系电话
+				<td>{{i[4]}}
+		</tbody>
+	</table>
+			{% endfor %}
+		{% endif %}
+
+
+
+	{% elif content=="transaction" %}
+	<a href="/sell_reg">录入售出流水</a>
+	<a href="/static/download/query_res.csv">报表生成</a>
+	<table>
+		<caption>售出交易流水</caption>
+		<thead>
+			<tr>
+				<th>订单号
+				<th>交易时间
+				<th>药品名称
+				<th>售出数量
+				<th>顾客姓名
+				<th>收入金额
+				<th>
+				<th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+				<td>总计
+				<td>
+				<td>{{info[0]}}
+				<td>
+				<td>{{info[1]}}
+				<td>
+				<td>
+		{% for i in result%}
+			<tr>
+				<td>{{i[0]}}
+				<td>{{i[1]}}
+				<td>{{i[2]}}
+				<td>{{i[3]}}
+				<td>{{i[4]}}
+				<td>{{i[5]}}
+				<td><a href="/update_sell?transaction_id={{i[0]}}&transaction_time={{i[1]}}&drug_id={{i[6]}}&drug_amount={{i[3]}}&custom_name={{i[4]}}&total_price={{i[5]}}" >修改</a>
+				<td><a href="/remove_sell?transaction_id={{i[0]}}&drug_id={{i[6]}}">删除</a>
+		{% endfor %}
+
+		</tbody>
+	</table>
+
+
+
+	 {% elif content=="purchase" %}
+	 <a href="/purchase_reg">登记进货</a>
+	 <table>
+		<caption>进货情况列表</caption>
+		<thead>
+			<tr>
+				<th>进货订单号
+				<th>药品名
+				<th>进货数量
+				<th>生产厂家
+				<th>生产日期
+				<th>进价
+				<th>
+				<th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>总计
+				<td>
+				<td>{{info[0]}}
+				<td>
+				<td>
+				<td>{{info[1]}}
+				<td>
+				<td>
+
+		{% for i in result%}
+			<tr>
+				<td>{{i[0]}}
+				<td>{{i[1]}}
+				<td>{{i[2]}}
+				<td><a href="/query_supplier/{{i[7]}}" title="{{i[3]}}">{{i[3]}}</a>
+				<td>{{i[4]}}
+				<td>{{i[5]}}
+				<td><a href="/update_purchase?transaction_id={{i[0]}}&drug_id={{i[6]}}&amount={{i[2]}}&production_date={{i[4]}}&single_price={{i[5]}}" title="{{i[4]}}">修改</a>
+				<td><a href="/remove_purchase?transaction_id={{i[0]}}&drug_id={{i[6]}}" style="color: black" onclick="{if(confirm('确认删除?')){this.document.formname.submit();return true;}return false;}">删除</a>
+
+		{% endfor %}
+
+		</tbody>
+	</table>
+
+
+	{% elif content=="refund" %}
+	<a href="/refund">录入退货信息</a>
+	<table>
+		<caption>售出交易流水</caption>
+		<thead>
+			<tr>
+				<th>订单号
+				<th>交易时间
+				<th>药品名称
+				<th>退货数量
+				<th>顾客姓名
+				<th>退款金额
+				<th>退货原因
+		</thead>
+		<tbody>
+		{% for i in result%}
+			<tr>
+				<td>{{i[0]}}
+				<td>{{i[1]}}
+				<td>{{i[2]}}
+				<td>{{i[3]}}
+				<td>{{i[4]}}
+				<td>{{i[5]}}
+				<td>{{i[6]}}
+		{% endfor %}
+
+		</tbody>
+	</table>
+	{% endif %}
+</body>
+</html>
+

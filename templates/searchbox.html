@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/searchbox.css">
+    <script type="text/javascript">
+        function openwin()
+        {
+                {% if level==1 %}
+                alert("您当前的身份为顾客\n享有查询药品和生产厂家信息的权限");
+                {% elif level==10 %}
+                alert("您当前的身份为员工\n享有如下权限:\n查询、修改药品信息\n查看生产厂家信息\n查询、修改交易流水\n管理退货")
+                {% elif level==100 %}
+                alert("您当前的身份为经理及以上\n享有本管理系统所有权限")
+                {% endif %}
+        }
+    </script>
+
+  </head>
+  <body onload="openwin()">
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/index.20181128170735.js"></script>
+<script type="text/javascript">
+var ver=RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);if(ver&&parseFloat(ver[1])<5){document.getElementsByTagName('body')[0].className+=' whitespacefix';}
+</script>
+    <div class="s003">
+      <form action="/query_all" method="post" id="fff">
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="input-select">
+              <select data-trigger="" name="choices-single-defaul">
+                <option placeholder="">药品</option>
+                <option>顾客</option>
+                <option>售出</option>
+                <option>退货</option>
+                <option>供应商</option>
+                <option>进货记录</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-field second-wrap">
+            <input id="search" type="text" name="text" placeholder="输入 日期/编号/电话/姓名/药品名称/生产厂家 等" />
+          </div>
+          <div class="input-field third-wrap">
+            <button class="btn-search" type="button" onclick="formSubmit()">
+              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <a href='/summit'>数据报表</a>
+<div class="pos vis section">
+<div class="vis-2 pos-2 size cont">
+<a class="button vis-3 pos-3 size-2 font" href="/static/download/drug_sys_sync.sql">下载数据库备份文件</a>
+<a class="button vis-3 pos-3 size-2 font" href="/redo">从备份文件恢复</a>
+    <script src="/static/js/extention/choices.js"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+    <script type="text/javascript">
+        function formSubmit()
+        {
+           // return false; 可以在这里进行表单校验。
+            document.getElementById("fff").submit();
+            //该方法提交表单的方式与用户单击 Submit 按钮一样，但是表单的 onsubmit 事件句柄不会被调用。
+            //onsubmit="return false;"可以用于阻止enter键提交表单。
+　　　　　　　//换成jquery方式，比如$("#myForm").submit()会调用onsubmit事件。
+
+        }
+    </script>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>销售信息登记</title>
+</head>
+<body>
+  {% if message %}
+  <p style="color:red">{{ message }}</p>
+  {% endif %}
+  <form action="/sell_reg" method="post">
+    <legend>请登记新的销售信息:</legend>
+    <p><input name="transaction_time" placeholder="交易时间"></p>
+    <p><input name="drug_id" placeholder="药品批准号"></p>
+    <p><input name="drug_amount" placeholder="药品数量"></p>
+    <p><input name="customer_id" placeholder="顾客编号"></p>
+    <p><input name="single_price" placeholder="售出单价"></p>
+    <p><button type="submit">登记</button></p>
+  </form>
+</body>
+</html>

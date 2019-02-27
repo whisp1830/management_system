@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>添加新的药品信息</title>
+</head>
+<body>
+  {% if message %}
+  <p style="color:red">{{ message }}</p>
+  {% endif %}
+  <form action="/add_drug" method="post">
+    <legend>请输入要添加的新药品信息:</legend>
+    <p><input name="drug_id" placeholder="国药准字" ></p>
+    <p><input name="drug_name" placeholder="名称" ></p>
+    <p><input name="drug_size" placeholder="规格" ></p>
+    <p><input name="supplier_id" placeholder="生产厂家编号" ></p>
+    <p><input name="shelf_life" placeholder="保质期（年）" ></p>
+    <p><button type="submit">添加</button></p>
+  </form>
+</body>
+</html>

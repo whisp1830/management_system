@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>修改药品信息</title>
+</head>
+<body>
+  {% if content=="update_drug" %}
+  {% if info %}
+  <form action="/update_drug_change" method="post">
+    <legend>请输入要修改的药品信息:</legend>
+    <a>国药准字</a><p><input name="drug_id" value="{{info[0]}}"placeholder="{{info[0]}}" ></p>
+    <a>药品名称</a><p><input name="drug_name" value="{{info[1]}}" placeholder="{{info[1]}}" ></p>
+    <a>药品规格</a><p><input name="drug_size" value="{{info[2]}}" placeholder="{{info[2]}}" ></p>
+    <a>保质期</a><p><input name="shelf_life" value="{{info[3]}}" placeholder="{{info[3]}}" ></p>
+  {% endif %}
+  
+  {% elif content=="update_purchase" %}
+  {% if info %}
+  <form action="/update_purchase_change" method="post">
+    <legend>请输入要修改的进货信息:</legend>
+    <a>进货订单号</a><p><input name="transaction_id" value="{{info[0]}}"placeholder="{{info[0]}}" ></p>
+    <a>国药准字</a><p><input name="drug_id" value="{{info[6]}}"placeholder="{{info[6]}}" ></p>
+    <a>进货数量</a><p><input name="amount" value="{{info[3]}}" placeholder="{{info[3]}}" ></p>
+    <a>生产日期</a><p><input name="production_date" value="{{info[4]}}" placeholder="{{info[4]}}" ></p>
+    <a>进价</a><p><input name="single_price" value="{{info[5]}}" placeholder="{{info[5]}}" ></p>
+  {% endif %}
+
+  {% elif content=="update_sell" %}
+  {% if info %}
+  <form action="/update_sell_change" method="post">
+    <legend>请输入要修改的交易信息:</legend>
+    <a>交易订单号</a><p><input name="transaction_id" value="{{info[0]}}"placeholder="{{info[0]}}" ></p>
+    <a>交易时间</a><p><input name="transaction_time" value="{{info[1]}}"placeholder="{{info[6]}}" ></p>
+    <a>国药准字</a><p><input name="drug_id" value="{{info[3]}}" placeholder="{{info[3]}}" ></p>
+    <a>购买数量</a><p><input name="drug_amount" value="{{info[4]}}" placeholder="{{info[4]}}" ></p>
+    <a>顾客姓名</a><p><input name="custom_name" value="{{info[5]}}" placeholder="{{info[4]}}" ></p>
+    <a>售出单价</a><p><input name="single_price" value="{{info[6]}}" placeholder="{{info[5]}}" ></p>
+  {% endif %}
+
+  {% endif %}
+    <p><button type="submit">修改</button></p>
+  </form>
+</body>
+</html>

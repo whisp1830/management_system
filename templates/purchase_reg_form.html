@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>登记采购信息</title>
+</head>
+<body>
+  {% if message %}
+  <p style="color:red">{{ message }}</p>
+  {% endif %}
+  <form action="/purchase_reg" method="post">
+    <legend>请登记新的采购信息:</legend>
+    <p><input name="drug_id" placeholder="批准号"></p>
+    <p><input name="amount" placeholder="数量"></p>
+    <p><input name="production_date" placeholder="生产日期"></p>
+    <p><input name="single_price" placeholder="进货单价"></p>
+    <p><button type="submit">登记</button></p>
+  </form>
+</body>
+</html>
